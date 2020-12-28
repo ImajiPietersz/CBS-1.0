@@ -17,6 +17,7 @@ const errorCode = require('../common/error-code');
 const errorMessage = require('../common/error-methods');
 const checkToken = require('./secureRoute');
 const hbs = require('express-handlebars')
+const session = require('express-session');
 
 
 app.set('views', path.join(appRoot,'app/views'))
@@ -84,6 +85,8 @@ app.get('/', (req,res) => {
     res.render('login');
 });
 
+
+
 AuthenticRoute.init(router);
 EmployeeRoute.init(router);
 //UserRoute.init(router);
@@ -97,3 +100,15 @@ const ApiConfig = {
 };
 
 module.exports = ApiConfig;
+
+//for session
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.json());
+
+
+
