@@ -52,7 +52,6 @@ function addUser(user) {
 }
 
 
-
 function updateUser(id,user) {
     return new Promise((resolve,reject) => {
         db.query("UPDATE test set name='"+user.name+"',age='"+user.age+"',state='"+user.state+"',country='"+user.country+"' WHERE id='"+id+"'",(error,rows,fields)=>{
